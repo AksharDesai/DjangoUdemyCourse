@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+
+{% block css %}
+<style>
+
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+html,body{
+   width: 100%;
+   height: 100%;
+}
+main{
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.container{
+    /* background-color: black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+input{
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+
+}
+
+button{
+   
+    background-color: black;
+    border: 2px solid white;
+    border-radius: 15px;
+    color: white;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+    margin: 0 auto;
+}
+
+.button-container{
+    text-align:center;
+}
+
+
+
+</style>
+{% endblock css %}
+
+{% block content %}
+<main>
+    <div class="container">
+
+        <form method = "post" action="">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="form-group" id="form-field">
+                <label for="{{ field.id_for_label }}" class="labels" >{{ field.label }}</label>
+                {{ field }}
+            </div>
+        {% endfor %}
+        
+                
+        <div class="button-container">
+
+            
+            <button  type="Submit">Submit</button>
+        </div>
+        </form>
+    </div>
+</main>
+{% endblock content %}
+    

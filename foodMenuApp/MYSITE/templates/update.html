@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block css %}
+<style>
+
+    main{
+        margin-top:100px;
+    }
+</style>
+{% endblock css %}
+    
+
+{% block content %}
+<main>
+
+    <form method = "post" action="">
+        {% csrf_token %}
+        {{form}}
+        
+        <button  type="Submit">Submit</button>
+    </form>
+</main>
+{% endblock content %}
+    
