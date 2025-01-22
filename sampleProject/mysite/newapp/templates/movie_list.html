@@ -1,0 +1,27 @@
+{% comment %} search {% endcomment %}
+<form method="GET" action="">
+    <input type="search" name="movie_name">
+    <button type="submit" >Search</button>
+</form>
+
+
+<!-- Display Movies -->
+{% for movie in movie_object %}
+  <h2>{{ movie.name}}</h2>
+  
+{% endfor %}
+
+<!-- Pagination Controls -->
+{% if movie_object.has_previous %}
+    <a href="?page=1">First</a>
+    <a href="?page={{movie_object.previous_page_number}}">Previous</a>
+{% endif %}
+
+{% if movie_object.has_next %}
+<a href="?page={{movie_object.next_page_number}}">Next</a>
+    <a href="?page={{movie_object.paginator.num_pages}}">Last</a>
+
+{% endif %}
+
+
+</div>
