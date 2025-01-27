@@ -1,27 +1,95 @@
-{% comment %} search {% endcomment %}
-<form method="GET" action="">
-    <input type="search" name="movie_name">
-    <button type="submit" >Search</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .movie_card{
+            display: flex;
+            gap: 20px;
+        }
+        button{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+
+    <form id="MovieForm" method="post" action="">
+        {% csrf_token %}
+        <input type="hidden" id="movie_id" name="movie_id" value="">
+        {% for field in form %}
+        {{field.name}}
+        {{field}}
+        <br><br>
+
+        {% endfor %}
+
+        <button type="submit" id="submitBtn">Add Movie</button>
+        <button type="button" id="cancelEdit" style="display: none;">Cancel</button>
+    </form>
+
 
 
 <!-- Display Movies -->
-{% for movie in movie_object %}
-  <h2>{{ movie.name}}</h2>
-  
-{% endfor %}
+    <div class="container ">
 
-<!-- Pagination Controls -->
-{% if movie_object.has_previous %}
+        
+        {% for movie in movie_object %}
+       <div class="movie_card"> 
+
+           <h2>{{ movie.name}}</h2>
+           
+        
+            <button class="delete-btn" name="delete" value="{{movie.id}}">delete</button>
+            <button class="edit-btn" name="edit" value="{{movie.id}}" >edit</button>
+           
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <form method="GET" action="">
+        <input type="search" name="movie_name">
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Pagination Controls -->
+    {% if movie_object.has_previous %}
     <a href="?page=1">First</a>
     <a href="?page={{movie_object.previous_page_number}}">Previous</a>
-{% endif %}
+    {% endif %}
 
-{% if movie_object.has_next %}
-<a href="?page={{movie_object.next_page_number}}">Next</a>
+    {% if movie_object.has_next %}
+    <a href="?page={{movie_object.next_page_number}}">Next</a>
     <a href="?page={{movie_object.paginator.num_pages}}">Last</a>
 
-{% endif %}
+    {% endif %}
 
 
-</div>
+    <script>
+
+      
+        
+        
+        //<================= ADD movies using ajax =================>
+
+             
+        //<================= Delete movies using ajax =================>
+
+    </script>
+    <script src="{% static 'main.js' %}"></script>
+
+</body>
+
+</html>

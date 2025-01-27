@@ -20,5 +20,7 @@ from newapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('movies/',views.movie_list,name='movie_list')
+    path('movies/',views.movie_list,name='movie_list'),
+    path('movies/delete/<int:movie_id>/',views.movie_delete,name='movie_delete'),
+    path('movies/<int:movie_id>/',views.movie_update,name='movie_update'),
 ]
